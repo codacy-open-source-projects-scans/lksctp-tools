@@ -1,0 +1,58 @@
+                      HOW TO COMPILE, RUN AND INSTALL
+                      -------------------------------
+
+CONTENTS
+--------
+
+The lksctp-tools package is intended for two audiences.  
+	1) SCTP application developers
+	2) LKSCTP project developers
+
+For SCTP application developers, this package provides the user-level
+C language header files and a library for accessing SCTP specific
+application programming interfaces not provided by the standard sockets. 
+
+For LKSCTP project developers, this package provides the functional
+and API regression tests.
+
+For either role, this project provides sample code, utilities, and
+tests that one may find useful.  
+
+The below INSTALL directions are provided with in each of these roles.
+
+NOTE:  To build, run and install the lksctp-tools package, your system is 
+required to be running with linux-2.5.36, or a later version of the 
+kernel, configured with the Network options "SCTP Configuration" 
+support enabled.  
+
+______________________________________________________________________
+
+
+INSTALLATION   
+-------------
+Prerequisite:  A Linux kernel with SCTP support.  This may come stock with 
+your distrbution (some day), or you will need to build your own 2.5.36 or
+later kernel.
+
+To install/build the lksctp-tools utilities/tests do the following:
+
+1) Untar the lksctp-tools directory from the gzipped tarball. This creates a 
+   subdirectory called lksctp-tools-x.y.z. 
+
+   Ensure you have autoconf, automake and libtool packages installed on your
+   system.
+
+2) Run ./bootstrap
+
+3) Run ./configure
+
+4) Run make
+
+5) To run the SCTP kernel regression tests,
+  
+   $ cd src/func_tests
+   $ make v4test (regression tests for the IPv4 socket support)
+   $ make v6test (regression tests for the IPv6 socket support)
+
+6) Run other SCTP test tools/applications in src/apps directory to verify the
+   running SCTP.
