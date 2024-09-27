@@ -81,7 +81,7 @@ main(int argc, char *argv[])
 
         lstn_sk = test_socket(pf_class, SOCK_STREAM, IPPROTO_SCTP);
 
-	message_rcv = malloc(512);
+	message_rcv = test_malloc(512);
 	conn_addr.sin_family = AF_INET;
         conn_addr.sin_addr.s_addr = SCTP_IP_LOOPBACK;
         conn_addr.sin_port = htons(SCTP_TESTPORT_1);
@@ -159,6 +159,7 @@ main(int argc, char *argv[])
 	close(sk1);
 	close(lstn_sk);
 	close(acpt_sk);
+
+	free(message_rcv);
 	return 0;
-	
 }

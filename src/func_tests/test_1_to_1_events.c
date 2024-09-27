@@ -139,8 +139,7 @@ main(int argc, char *argv[])
 
         memset(&inmessage, 0, sizeof(inmessage));
 	/* NOW initialize inmessage with enough space for DATA... */
-	big_buffer = malloc(REALLY_BIG);
-	if (!big_buffer) { DUMP_CORE; }
+	big_buffer = test_malloc(REALLY_BIG);
 
 	/* Let's do a test to do a recvmsg when we are not listening and
 	 * when we have no associations.
@@ -201,5 +200,6 @@ main(int argc, char *argv[])
 	close(svr_sk);
 	close(acpt_sk);
 
+	free(big_buffer);
 	return 0;
 }

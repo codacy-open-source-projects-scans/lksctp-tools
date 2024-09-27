@@ -72,7 +72,7 @@ t_recv(void) {
         char * buffer;
 
 	memset(&inmessage, 0, sizeof(inmessage));
-        buffer = malloc(100);
+        buffer = test_malloc(100);
 
         iov.iov_base = buffer;
         iov.iov_len = 100;
@@ -82,8 +82,9 @@ t_recv(void) {
         inmessage.msg_controllen = sizeof(incmsg);
 
 	cnt = test_recvmsg(acpt_sk,&inmessage, MSG_WAITALL);
-        test_check_msg_data(&inmessage, cnt, strlen(message) + 1, MSG_EOR,
+	test_check_msg_data(&inmessage, cnt, strlen(message) + 1, MSG_EOR,
 			    0, 0);
+	free(buffer);
 }
 
 void

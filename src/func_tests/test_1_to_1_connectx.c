@@ -129,7 +129,7 @@ main(int argc, char *argv[])
 	tst_resm(TPASS, "sctp_connectx() with invalid socket - ENOTSOCK");
 
 	/*sctp_connectx () TEST3: Invalid address, EINVAL Expected error*/
-	tmp_addr = (struct sockaddr *) malloc(sizeof(struct sockaddr));
+	tmp_addr = (struct sockaddr *)test_malloc(sizeof(struct sockaddr));
 	tmp_addr->sa_family = AF_INET;
 	error = sctp_connectx(sk, tmp_addr, 1, NULL);
 	if (error != -1 || errno != EINVAL)
@@ -222,5 +222,6 @@ main(int argc, char *argv[])
 	close(sk1);
 	close(lstn_sk);
 
+	free(tmp_addr);
 	return 0;
 }

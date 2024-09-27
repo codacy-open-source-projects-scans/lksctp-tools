@@ -302,7 +302,7 @@ main(int argc, char *argv[])
         outmessage.msg_iov->iov_len = strlen(message) + 1;
 
 	memset(&inmessage, 0, sizeof(inmessage));
-        buffer_rcv = malloc(REALLY_BIG);
+        buffer_rcv = test_malloc(REALLY_BIG);
 
         iov_rcv.iov_base = buffer_rcv;
         iov_rcv.iov_len = REALLY_BIG;
@@ -373,5 +373,7 @@ main(int argc, char *argv[])
 	close(sk1);
 	close(lstn_sk);
 	close(acpt_sk);
+
+	free(buffer_rcv);
 	return 0;
 }
